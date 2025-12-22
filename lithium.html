@@ -1,8 +1,248 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>How to Recharge Lithium-Ions</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lithium-Ion Battery Recycling</title>
+  <style>
+    /* --- General Styles --- */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      text-align: center;
+      color: #004d40;
+      margin-top: 40px;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    p {
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: black;
+      padding: 10px 0;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #00ffd5;
+      font-weight: bold;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background-color: #a4fc00;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: #0ffd76;
+    }
+
+    /* --- Buttons --- */
+    .find-btn,
+    .zip-box button {
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #1b9c85, #16a085);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .find-btn:hover,
+    .zip-box button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    }
+
+    .zip-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .zip-box input {
+      padding: 12px 15px;
+      font-size: 16px;
+      border: 2px solid #16a085;
+      border-radius: 30px;
+      outline: none;
+      width: 180px;
+      transition: all 0.3s ease;
+    }
+
+    .zip-box input:focus {
+      border-color: #1b9c85;
+      box-shadow: 0 0 8px rgba(27,156,133,0.5);
+    }
+
+    .note {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      margin-top: 8px;
+    }
+
+  </style>
 </head>
 <body>
-  <h1>If you are here, you are probably wondering how to recharge lithium-ion batteries because lithium is a non-renewable mineral dug from the Earth. So, if we run out of it, there is no more. </h1>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <ul class="nav-links">
+        <li><a href="#recycle">How to Recycle</a></li>
+        <li><a href="#salvagesafely">How to Salvage</a></li>
+        <li><a href="#find">Find Recycling</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- How to Recycle Section -->
+  <section id="recycle">
+    <h2>How to Recycle Lithium-Ion Batteries</h2>
+    <p>
+      To recycle a lithium-ion battery, first locate a certified battery
+      recycling center near you using this website. Before transport,
+      tape the battery terminals to prevent short circuits and place the
+      battery in a non-metal container.
+    </p>
+    <p>
+      At the recycling center, staff members will safely handle the battery
+      according to environmental and safety regulations. Some centers may
+      offer incentives, but proper recycling is the primary goal to prevent
+      fires and environmental damage.
+    </p>
+  </section>
+
+  <!-- How to Salvage Safely Section -->
+  <section id="salvagesafely">
+    <h2>How to Salvage Safely</h2>
+    <p>
+      Get the tools you would need to salvage: LiPo charger, C4 charger, 4S battery management, Pry tools, Flush cutters, Side cutters, Utility knife, screwdrivers.
+      After you have gotten these materials, start by taking the batteries out. Research the battery type. Then, use the LiPo charger and insert the battery. Sit back while the battery revives using the charger. Wear a mask and gloves in case the battery explodes or you get cut.
+    </p>
+  </section>
+
+  <!-- Find Recycling Section -->
+  <section id="find">
+    <h2>Find Recycling</h2>
+
+    <!-- Find Near Me Button -->
+    <div style="text-align:center; margin-bottom:15px;">
+      <button class="find-btn" onclick="findRecycling()">
+        🔋 Find Lithium-Ion Recycling Near Me
+      </button>
+    </div>
+
+    <!-- ZIP Code Input + Button -->
+    <div class="zip-box">
+      <input type="number" id="zipInput" placeholder="Enter ZIP Code">
+      <button onclick="findByZip()">Search</button>
+    </div>
+
+    
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    // Find Near Me
+    function findRecycling() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(openMaps);
+      } else {
+        alert("Geolocation not supported");
+      }
+    }
+
+    function openMaps(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      const url = `https://www.google.com/maps/search/lithium+ion+battery+recycling+/@${lat},${lon},14z`;
+      window.open(url, "_blank");
+    }
+
+    // Find by ZIP Code
+    function findByZip() {
+      const zip = document.getElementById("zipInput").value.trim();
+      if (!zip) {
+        alert("Please enter a ZIP code.");
+        return;
+      }
+
+      fetch(`https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.length === 0) {
+            alert("ZIP code not found.");
+            return;
+          }
+
+          const lat = parseFloat(data[0].lat);
+          const lon = parseFloat(data[0].lon);
+
+          const url = `https://www.google.com/maps/search/lithium+ion+battery+recycling/@${lat},${lon},14z`;
+          window.open(url, "_blank");
+        })
+        .catch(err => {
+          console.error(err);
+          alert("Error fetching location. Try again.");
+        });
+    }
+  </script>
+
 </body>
 </html>
