@@ -17,25 +17,28 @@
 
     
 body {
+  position: relative; /* 🔑 REQUIRED */
   font-family: "Segoe UI", Tahoma, sans-serif;
   margin: 0;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(22,160,133,0.15), transparent 40%),
-    radial-gradient(circle at 85% 30%, rgba(15,253,118,0.12), transparent 45%),
-    radial-gradient(circle at 50% 85%, rgba(164,252,0,0.12), transparent 50%),
-    var(--light);
   color: #222;
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(22,160,133,0.18), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(15,253,118,0.15), transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(164,252,0,0.15), transparent 50%),
+    var(--light);
 }
 
-    body::before {
+body::before {
   content: "";
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.035) 1px, transparent 1px);
   background-size: 40px 40px;
-  z-index: -2;
+  z-index: 0;
+  pointer-events: none;
 }
 
 
@@ -112,9 +115,23 @@ body {
       transition: transform 0.3s ease;
     }
 
+    section {
+  background: rgba(255, 255, 255, 0.92); /* slightly transparent */
+  backdrop-filter: blur(6px);
+}
+
+    
+
     section:hover {
       transform: translateY(-3px);
     }
+
+    section,
+.navbar {
+  position: relative;
+  z-index: 1;
+}
+
 
     h2 {
       text-align: center;
