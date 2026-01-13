@@ -19,11 +19,14 @@
 }
 
     :root {
-      --primary: #16a085;
-      --secondary: #00ffd5;
-      --accent: #a4fc00;
-      --dark: #0b0f14;
-      --light-bg: #f2f6f5;
+     :root {
+  --primary: #16a085;     /* teal */
+  --secondary: #0ffd76;   /* neon green */
+  --dark: #0f172a;        /* dark slate */
+  --light: #f2f6f5;       /* soft background */
+  --card: #ffffff;
+}
+
     }
 
     * {
@@ -31,11 +34,17 @@
       scroll-behavior: smooth;
     }
 
-    body {
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      margin: 0;
-      background: var(--light-bg);
-      color: #222;
+ body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  margin: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(22,160,133,0.15), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(15,253,118,0.12), transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(164,252,0,0.12), transparent 50%),
+    var(--light);
+  color: #222;
+}
+
 
       .navbar {
       position: sticky;
