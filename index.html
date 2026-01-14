@@ -99,6 +99,87 @@ body::before {
 .nav-links a:hover::after {
   width: 100%;
 }
+.hamburger-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(6px);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  position: relative;
+}
+
+.menu-btn {
+  position: absolute;
+  left: 20px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--secondary);
+  letter-spacing: 1px;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: rgba(15,15,15,0.95);
+  display: none;
+  flex-direction: column;
+  text-align: center;
+}
+
+.mobile-menu li {
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 16px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.mobile-menu a:hover {
+  background: rgba(15,253,118,0.15);
+}
+
+/* Desktop view */
+@media (min-width: 768px) {
+  .menu-btn {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .mobile-menu li {
+    border: none;
+  }
+
+  .mobile-menu a {
+    padding: 14px 22px;
+  }
+}
+
 
 /* ---------- SECTIONS ---------- */
 section {
@@ -195,16 +276,23 @@ footer span {
 
 <body>
 
-<nav class="navbar">
-  <div class="navbar-container">
-    <ul class="nav-links">
-      <li><a href="#recycle">How to Recycle</a></li>
-      <li><a href="#whytorecycle">Why to Recycle</a></li>
-      <li><a href="#salvagesafely">How to Salvage</a></li>
-      <li><a href="#find">Find Recycling</a></li>
-    </ul>
+<nav class="hamburger-nav">
+  <div class="nav-inner">
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <div class="logo">
+    <img src="https://i.postimg.cc/sDw1ffgD/Chat-GPT-Image-Jan-12-2026-08-28-26-PM.jpg" alt="Logo">
+    </div>
   </div>
+
+  <ul class="mobile-menu" id="mobileMenu">
+    <li><a href="#recycle" onclick="toggleMenu()">How to Recycle</a></li>
+    <li><a href="#whytorecycle" onclick="toggleMenu()">Why to Recycle</a></li>
+    <li><a href="#salvagesafely" onclick="toggleMenu()">How to Salvage</a></li>
+    <li><a href="#find" onclick="toggleMenu()">Find Recycling</a></li>
+  </ul>
 </nav>
+
 
 <section id="recycle">
   <h2>How to Recycle Lithium-Ion Batteries</h2>
@@ -259,6 +347,12 @@ function findByZip() {
       if (!data.length) return alert("ZIP code not found.");
       window.open(`https://www.google.com/maps/search/lithium+ion+battery+recycling/@${data[0].lat},${data[0].lon},14z`, "_blank");
     });
+}
+</script>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 }
 </script>
 
