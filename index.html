@@ -324,39 +324,62 @@ footer span {
 </form>
 
 </section>
-
 <script>
+/* ---------- FIND NEAR ME ---------- */
 function findRecycling() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(openMaps);
-  } else {
+  if (!navigator.geolocation) {
     alert("Geolocation not supported");
+    return;
   }
+
+  navigator.geolocation.getCurrentPosition(openMaps, () => {
+    alert("Location access denied.");
+  });
 }
 
 function openMaps(position) {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
-  window.open(`https://www.google.com/maps/search/lithium+ion+battery+recycling/@${lat},${lon},14z`, "_blank");
+
+  const url = `https://www.google.com/maps/search/lithium+ion+battery+recycling/@${lat},${lon},14z`;
+  window.open(url, "_blank");
 }
 
+/* ---------- FIND BY ZIP ---------- */
 function findByZip() {
   const zip = document.getElementById("zipInput").value.trim();
-  if (!zip) return alert("Please enter a ZIP code.");
+
+  if (!zip) {
+    alert("Please enter a ZIP code.");
+    return;
+  }
 
   fetch(`https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json`)
     .then(res => res.json())
     .then(data => {
-      if (!data.length) return alert("ZIP code not found.");
-      window.open(`https://www.google.com/maps/search/lithium+ion+battery+recycling/@${data[0].lat},${data[0].lon},14z`, "_blank");
+      if (!data || data.length === 0) {
+        alert("ZIP code not found.");
+        return;
+      }
 
-      function handleZipSubmit(event) {
-  event.preventDefault(); // prevents page reload
-  findByZip();             // calls your existing function
-}
+      const lat = parseFloat(data[0].lat);
+      const lon = parseFloat(data[0].lon);
+
+      const url = `https://www.google.com/maps/search/lithium+ion+battery+recycling/@${lat},${lon},14z`;
+      window.open(url, "_blank");
+    })
+    .catch(() => {
+      alert("Error fetching location. Try again.");
     });
 }
+
+/* ---------- FORM SUBMIT (ENTER KEY SUPPORT) ---------- */
+function handleZipSubmit(event) {
+  event.preventDefault(); // stops page reload
+  findByZip();
+}
 </script>
+
 <script>
 function toggleMenu() {
   const menu = document.getElementById("mobileMenu");
