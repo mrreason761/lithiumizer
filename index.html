@@ -318,10 +318,11 @@ footer span {
     <button class="find-btn" onclick="findRecycling()">🔋 Find Battery Recycling </button>
   </div>
 
-  <div class="zip-box">
-    <input type="number" id="zipInput" placeholder="Enter ZIP Code">
-    <button onclick="findByZip()">Search</button>
-  </div>
+  <form class="zip-box" onsubmit="handleZipSubmit(event)">
+  <input type="number" id="zipInput" placeholder="Enter ZIP Code">
+  <button type="submit">Search</button>
+</form>
+
 </section>
 
 <script>
@@ -348,6 +349,11 @@ function findByZip() {
     .then(data => {
       if (!data.length) return alert("ZIP code not found.");
       window.open(`https://www.google.com/maps/search/lithium+ion+battery+recycling/@${data[0].lat},${data[0].lon},14z`, "_blank");
+
+      function handleZipSubmit(event) {
+  event.preventDefault(); // prevents page reload
+  findByZip();             // calls your existing function
+}
     });
 }
 </script>
