@@ -14,7 +14,6 @@
   --light:#f2f6f5;
 }
 
-/* ---------- GLOBAL ---------- */
 * { box-sizing:border-box; scroll-behavior:smooth; }
 
 body {
@@ -27,7 +26,7 @@ body {
     var(--light);
 }
 
-/* ---------- HAMBURGER NAV ---------- */
+/* ---------- NAV ---------- */
 .hamburger-nav {
   position:sticky;
   top:0;
@@ -36,6 +35,7 @@ body {
 }
 
 .nav-inner {
+  position:relative; /* 🔑 FIX */
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -160,7 +160,7 @@ p { line-height:1.7; }
 
 <section id="salvagesafely">
 <h2>How to Salvage Safely</h2>
-<p>Get the tools you would need to salvage: LiPo charger, C4 charger, 4S battery management, Pry tools, Flush cutters, Side cutters, Utility knife, screwdrivers. After you have gotten these materials, start by taking the batteries out. Research the battery type. Then, use the LiPo charger and insert the battery. Sit back while the battery revives using the charger. Wear a mask and gloves in case the battery explodes or you get cut. ⚠️If your battery runs out of power and you can't recharge it, you can salvage it. However, salvage safely and responsibly. Also, don't recharge batteries for an excessive amount of time. Otherwise, it will overheat and catch on fire.⚠️ </p>
+<p>Get the tools you would need to salvage: LiPo charger, C4 charger, 4S battery management, Pry tools, Flush cutters, Side cutters, Utility knife, screwdrivers. After you have gotten these materials, start by taking the batteries out. Research the battery type. Then, use the LiPo charger and insert the battery. Sit back while the battery revives using the charger. Wear a mask and gloves in case the battery explodes or you get cut. ⚠️If your battery runs out of power and you can't recharge it, you can salvage it. However, salvage safely and responsibly. Also, don't recharge batteries for an excessive amount of time. Otherwise, it will overheat and catch on fire.⚠️</p>
 </section>
 
 <section id="find">
@@ -179,20 +179,26 @@ p { line-height:1.7; }
 <script>
 function toggleMenu(){
   const m=document.getElementById("mobileMenu");
-  m.style.display = m.style.display==="flex"?"none":"flex";
+  m.style.display = m.style.display==="flex" ? "none" : "flex";
 }
 
 function findRecycling(){
-  navigator.geolocation.getCurrentPosition(p=>{
-    window.open(`https://www.google.com/maps/search/lithium+ion+battery+recycling/@${p.coords.latitude},${p.coords.longitude},14z`);
-  });
+  if(!navigator.geolocation){
+    alert("Geolocation not supported");
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    p=>window.open(`https://www.google.com/maps/search/lithium+ion+battery+recycling/@${p.coords.latitude},${p.coords.longitude},14z`),
+    ()=>alert("Location access denied")
+  );
 }
 
 function handleZipSubmit(e){
   e.preventDefault();
   const z=document.getElementById("zipInput").value;
   fetch(`https://nominatim.openstreetmap.org/search?postalcode=${z}&country=US&format=json`)
-  .then(r=>r.json()).then(d=>{
+  .then(r=>r.json())
+  .then(d=>{
     if(d[0]) window.open(`https://www.google.com/maps/search/lithium+ion+battery+recycling/@${d[0].lat},${d[0].lon},14z`);
   });
 }
