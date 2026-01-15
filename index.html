@@ -3,22 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="icon" href="https://i.postimg.cc/Z5Vp1CjH/favicon.jpg">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#16a085">
+
 <title>Lithiumizer</title>
 
 <style>
-:root {
+:root{
   --primary:#16a085;
   --secondary:#0ffd76;
   --dark:#0f172a;
   --light:#f2f6f5;
 }
 
-* { box-sizing:border-box; scroll-behavior:smooth; }
+*{
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
 
-body {
+body{
   margin:0;
   font-family:"Segoe UI",Tahoma,sans-serif;
   background:
@@ -29,22 +34,22 @@ body {
 }
 
 /* ---------- NAV ---------- */
-.hamburger-nav {
+.hamburger-nav{
   position:sticky;
   top:0;
   background:rgba(0,0,0,0.9);
   z-index:1000;
 }
 
-.nav-inner {
-  position:relative; /* 🔑 FIX */
+.nav-inner{
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:12px 18px;
 }
 
-.menu-btn {
+.menu-btn{
   font-size:26px;
   background:none;
   border:none;
@@ -52,18 +57,18 @@ body {
   cursor:pointer;
 }
 
-.logo {
+.logo{
   position:absolute;
   left:50%;
   transform:translateX(-50%);
 }
 
-.logo img {
+.logo img{
   height:42px;
 }
 
 /* ---------- MOBILE MENU ---------- */
-.mobile-menu {
+.mobile-menu{
   display:none;
   flex-direction:column;
   background:#000;
@@ -72,12 +77,12 @@ body {
   margin:0;
 }
 
-.mobile-menu li {
+.mobile-menu li{
   text-align:center;
   margin:12px 0;
 }
 
-.mobile-menu a {
+.mobile-menu a{
   color:var(--secondary);
   text-decoration:none;
   font-weight:bold;
@@ -85,7 +90,7 @@ body {
 }
 
 /* ---------- SECTIONS ---------- */
-section {
+section{
   max-width:900px;
   margin:50px auto;
   padding:35px;
@@ -94,11 +99,18 @@ section {
   box-shadow:0 12px 25px rgba(0,0,0,0.08);
 }
 
-h2 { text-align:center; color:#004d40; }
-p { line-height:1.7; }
+h2{
+  text-align:center;
+  color:#004d40;
+}
+
+p{
+  line-height:1.7;
+}
 
 /* ---------- BUTTONS ---------- */
-.find-btn, .zip-box button {
+.find-btn,
+.zip-box button{
   padding:14px 30px;
   background:linear-gradient(135deg,var(--primary),#1abc9c);
   color:#fff;
@@ -107,15 +119,16 @@ p { line-height:1.7; }
   font-weight:bold;
   cursor:pointer;
   box-shadow:0 6px 18px rgba(0,0,0,0.25);
-  transition:transform .2s;
+  transition:transform .2s ease;
 }
 
-.find-btn:hover, .zip-box button:hover {
+.find-btn:hover,
+.zip-box button:hover{
   transform:translateY(-3px) scale(1.03);
 }
 
 /* ---------- ZIP ---------- */
-.zip-box {
+.zip-box{
   display:flex;
   justify-content:center;
   gap:12px;
@@ -123,11 +136,12 @@ p { line-height:1.7; }
   flex-wrap:wrap;
 }
 
-.zip-box input {
+.zip-box input{
   padding:14px 18px;
   border-radius:40px;
   border:2px solid var(--primary);
   font-size:16px;
+  width:200px;
 }
 </style>
 </head>
@@ -136,9 +150,10 @@ p { line-height:1.7; }
 
 <nav class="hamburger-nav">
   <div class="nav-inner">
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+
     <div class="logo">
-      <img src="https://i.postimg.cc/3rLHdkm6/Chat-GPT-Image-Jan-12-2026-08-28-26-PM.jpg">
+      <img src="https://i.postimg.cc/3rLHdkm6/Chat-GPT-Image-Jan-12-2026-08-28-26-PM.jpg" alt="Lithiumizer Logo">
     </div>
   </div>
 
@@ -149,6 +164,7 @@ p { line-height:1.7; }
     <li><a href="#find" onclick="toggleMenu()">Find Recycling</a></li>
   </ul>
 </nav>
+
 <div style="text-align:center; margin:25px 0;">
   <button id="installBtn" class="find-btn" style="display:none;">
     📲 Install Lithiumizer App
@@ -157,36 +173,43 @@ p { line-height:1.7; }
 
 <section id="recycle">
 <h2>How to Recycle Lithium-Ion Batteries</h2>
-<p>To recycle a lithium-ion battery, first locate a certified battery recycling center near you using this website. Before transport, tape the battery terminals to prevent short circuits and place the battery in a non-metal container. At the recycling center, staff members will safely handle the battery according to environmental and safety regulations. Some centers may offer incentives, but proper recycling is the primary goal to prevent fires and environmental damage.</p>
+<p>
+To recycle a lithium-ion battery, first locate a certified battery recycling center near you using this website. Before transport, tape the battery terminals to prevent short circuits and place the battery in a non-metal container. At the recycling center, staff members will safely handle the battery according to environmental and safety regulations. Some centers may offer incentives, but proper recycling is the primary goal to prevent fires and environmental damage.
+</p>
 </section>
 
 <section id="whytorecycle">
 <h2>Why to Recycle</h2>
-<p>The reason why you should recycle is because toxic fumes will spread if not disposed correctly. In addition to that, if it is recharged irresponsibly, it could overheat or start thermal runway, causing explosions and fire. To prevent this from happening, you can follow the battery manufacturer's instructions, unplug devices once fully charged, keep batteries in cool locations, keeping them away from flammable substances, and replace them once swollen, damaged, or unusually hot.</p>
+<p>
+The reason why you should recycle is because toxic fumes will spread if not disposed correctly. In addition to that, if it is recharged irresponsibly, it could overheat or start thermal runway, causing explosions and fire. To prevent this from happening, you can follow the battery manufacturer's instructions, unplug devices once fully charged, keep batteries in cool locations, keeping them away from flammable substances, and replace them once swollen, damaged, or unusually hot.
+</p>
 </section>
 
 <section id="salvagesafely">
 <h2>How to Salvage Safely</h2>
-<p>Get the tools you would need to salvage: LiPo charger, C4 charger, 4S battery management, Pry tools, Flush cutters, Side cutters, Utility knife, screwdrivers. After you have gotten these materials, start by taking the batteries out. Research the battery type. Then, use the LiPo charger and insert the battery. Sit back while the battery revives using the charger. Wear a mask and gloves in case the battery explodes or you get cut. ⚠️If your battery runs out of power and you can't recharge it, you can salvage it. However, salvage safely and responsibly. Also, don't recharge batteries for an excessive amount of time. Otherwise, it will overheat and catch on fire.⚠️</p>
+<p>
+Get the tools you would need to salvage: LiPo charger, C4 charger, 4S battery management, Pry tools, Flush cutters, Side cutters, Utility knife, screwdrivers. After you have gotten these materials, start by taking the batteries out. Research the battery type. Then, use the LiPo charger and insert the battery. Sit back while the battery revives using the charger. Wear a mask and gloves in case the battery explodes or you get cut. ⚠️If your battery runs out of power and you can't recharge it, you can salvage it. However, salvage safely and responsibly. Also, don't recharge batteries for an excessive amount of time. Otherwise, it will overheat and catch on fire.⚠️
+</p>
 </section>
 
 <section id="find">
 <h2>Find Recycling</h2>
 
 <div style="text-align:center">
-<button class="find-btn" onclick="findRecycling()">🔋 Find Battery Recycling</button>
+  <button class="find-btn" onclick="findRecycling()">🔋 Find Recycling</button>
 </div>
 
 <form class="zip-box" onsubmit="handleZipSubmit(event)">
-<input type="number" id="zipInput" placeholder="Enter ZIP Code">
-<button type="submit">Search</button>
+  <input type="number" id="zipInput" placeholder="Enter ZIP Code" aria-label="ZIP Code" required>
+              
+  <button type="submit">Search</button>
 </form>
 </section>
 
 <script>
 function toggleMenu(){
-  const m=document.getElementById("mobileMenu");
-  m.style.display = m.style.display==="flex" ? "none" : "flex";
+  const menu = document.getElementById("mobileMenu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 }
 
 function findRecycling(){
@@ -194,47 +217,61 @@ function findRecycling(){
     alert("Geolocation not supported");
     return;
   }
+
   navigator.geolocation.getCurrentPosition(
-    p=>window.open(`https://www.google.com/maps/search/lithium+ion+battery+recycling/@${p.coords.latitude},${p.coords.longitude},14z`),
+    pos=>{
+      window.open(
+        `https://www.google.com/maps/search/lithium+ion+battery+recycling/@${pos.coords.latitude},${pos.coords.longitude},14z`,
+        "_blank"
+      );
+    },
     ()=>alert("Location access denied")
   );
 }
 
 function handleZipSubmit(e){
   e.preventDefault();
-  const z=document.getElementById("zipInput").value;
-  fetch(`https://nominatim.openstreetmap.org/search?postalcode=${z}&country=US&format=json`)
-  .then(r=>r.json())
-  .then(d=>{
-    if(d[0]) window.open(`https://www.google.com/maps/search/lithium+ion+battery+recycling/@${d[0].lat},${d[0].lon},14z`);
-  });
+  const zip = document.getElementById("zipInput").value.trim();
+  if(!zip) return;
+
+  fetch(`https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json`)
+    .then(r=>r.json())
+    .then(d=>{
+      if(d.length){
+        window.open(
+          `https://www.google.com/maps/search/lithium+ion+battery+recycling/@${d[0].lat},${d[0].lon},14z`,
+          "_blank"
+        );
+      } else {
+        alert("ZIP code not found");
+      }
+    });
 }
 </script>
+
 <script>
-if ("serviceWorker" in navigator) {
+if("serviceWorker" in navigator){
   navigator.serviceWorker.register("service-worker.js");
 }
 </script>
+
 <script>
 let deferredPrompt;
 const installBtn = document.getElementById("installBtn");
 
-window.addEventListener("beforeinstallprompt", (e) => {
+window.addEventListener("beforeinstallprompt", e=>{
   e.preventDefault();
   deferredPrompt = e;
   installBtn.style.display = "inline-block";
 });
 
-installBtn.addEventListener("click", async () => {
-  if (!deferredPrompt) return;
-
+installBtn.addEventListener("click", async ()=>{
+  if(!deferredPrompt) return;
   deferredPrompt.prompt();
   const result = await deferredPrompt.userChoice;
-
-  if (result.outcome === "accepted") {
+  if(result.outcome === "accepted"){
     installBtn.style.display = "none";
   }
-
   deferredPrompt = null;
 });
 </script>
