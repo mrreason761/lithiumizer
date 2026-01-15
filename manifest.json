@@ -20,14 +20,14 @@
   "screenshots": [
     {
       "src": "https://i.postimg.cc/bvqHcSKf/Screenshot-2026-01-14-at-9-12-26-PM.png", 
-      "sizes": "320x240",
+      "sizes": "850x1390",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Lithiumizer on Mobile"
     },
     {
       "src": "https://i.postimg.cc/13hrBjBs/Screenshot-2026-01-14-at-9-11-49-PM.png",
-      "sizes": "320x240",
+      "sizes": "3014x1560",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Lithiumizer on Desktop"
