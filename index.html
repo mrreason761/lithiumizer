@@ -149,6 +149,11 @@ p { line-height:1.7; }
     <li><a href="#find" onclick="toggleMenu()">Find Recycling</a></li>
   </ul>
 </nav>
+<div style="text-align:center; margin:25px 0;">
+  <button id="installBtn" class="find-btn" style="display:none;">
+    📲 Install Lithiumizer App
+  </button>
+</div>
 
 <section id="recycle">
 <h2>How to Recycle Lithium-Ion Batteries</h2>
@@ -209,6 +214,29 @@ function handleZipSubmit(e){
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
+</script>
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = "inline-block";
+});
+
+installBtn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+
+  deferredPrompt.prompt();
+  const result = await deferredPrompt.userChoice;
+
+  if (result.outcome === "accepted") {
+    installBtn.style.display = "none";
+  }
+
+  deferredPrompt = null;
+});
 </script>
 
 </body>
