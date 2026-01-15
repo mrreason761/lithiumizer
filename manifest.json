@@ -7,14 +7,14 @@
   "theme_color": "#16a085",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "https://i.postimg.cc/YSTVz3vh/Chat-GPT-Image-Jan-12-2026-08-28-26-PM.jpg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/jpeg"
     },
     {
-      "src": "/icon-512.png",
+      "src": "https://i.postimg.cc/YSTVz3vh/Chat-GPT-Image-Jan-12-2026-08-28-26-PM.jpg",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/jpeg"
     }
   ]
 }
